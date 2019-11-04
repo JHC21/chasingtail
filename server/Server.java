@@ -1,4 +1,4 @@
-import java.net.Socket;
+import java.net.serverSocket;
 
 public class Server{
   
@@ -7,3 +7,4 @@ public class Server{
     
   }
 }
+//https://lktprogrammer.tistory.com/64
