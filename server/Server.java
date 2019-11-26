@@ -5,32 +5,45 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 
-public class Server {
+public class MainServer {
+    private int port;
+    private ServerSocket servSock = null;
 
-    public static void main(String[] args) throws SocketException {
+    public MainServer(int port){
+        this.port = port;
+        this.openServSock();
+    }
 
-        int port;
-        Lobby room[];
-
-        if(args.length != 2){
-            return;
-        } else {
-            port = Integer.valueOf(args[1]);
-            room = new Lobby[3];
+    private void openServSock(){
+        try{
+            servSock = new ServerSocket(this.port);
+        }catch (IOException e) {
+            e.printStackTrace();
         }
+    }
+    private Socket acceptSock(){
+        Socket clntSock = null;
 
-        try {
-            ServerSocket serverSocket = new ServerSocket(port);
-
-            Socket listenSocket = serverSocket.accept();
-
-
+        try{
+            clntSock = this.servSock.accept();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return clntSock;
+    }
 
 
+
+    public static void main(String[] args) throws SocketException {
+        MainServer serv = new MainServer(9000);
+        Lobby l = new Lobby();
+
+        l.run();
+
+        while(true){
+            Socket client = serv.acceptSock();
+
+
+        }
     }
 }
-
-//https://lktprogrammer.tistory.com/64
