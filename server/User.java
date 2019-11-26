@@ -1,18 +1,21 @@
+package Server;
+
 import java.net.Socket;
 
-public class User extends Thread{
+public class User{
 
     private int x,y;
     private boolean isReady;
     private char status;
+    private Socket sock;
 
-    User(int x, int y){
-        this.x = x;
-        this.y = y;
+    User(Socket sock){
+        this.sock = sock;
         isReady = false;
     }
 
     public boolean getisReady(){
         return isReady;
     }
+    public Socket getSock() { return this.sock; }
 }
