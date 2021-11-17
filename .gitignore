@@ -1,0 +1,11 @@
+# IDE Settings
+.Settings
+.classpath
+.project
+
+# build
+/build
+*.class
+
+# module info
+/src/module-info.java
